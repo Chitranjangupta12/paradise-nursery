@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import ProductList from "./components/ProductList";
 
 function App() {
+  const [showProductList, setShowProductList] = useState(false);
+
   return (
-    <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Paradise Nursery</h1>
-      <p>Welcome to our plant shop 🌿</p>
-      <button style={{ padding: "10px 20px", fontSize: "16px" }}>
-        Get Started
-      </button>
+    <div style={{ textAlign: "center" }}>
+      {!showProductList ? (
+        <>
+          <h1>Paradise Nursery</h1>
+          <button onClick={() => setShowProductList(true)}>
+            Get Started
+          </button>
+        </>
+      ) : (
+        <ProductList />
+      )}
     </div>
   );
 }
