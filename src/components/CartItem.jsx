@@ -1,12 +1,16 @@
 import React from "react";
 
-function CartItem({ item, onRemove }) {
+function CartItem({ item, onIncrease, onDecrease }) {
   return (
-    <div style={{ border: "1px solid gray", margin: "10px", padding: "10px" }}>
+    <div>
       <h3>{item.name}</h3>
       <p>Price: ${item.price}</p>
       <p>Quantity: {item.quantity}</p>
-      <button onClick={onRemove}>Remove</button>
+
+      <button onClick={onIncrease}>+</button>
+      <button onClick={onDecrease}>-</button>
+
+      <p>Total: ${item.price * item.quantity}</p>
     </div>
   );
 }
