@@ -1,31 +1,23 @@
-import React from "react";
+import { useDispatch } from "react-redux";
+import { incrementQuantity, decrementQuantity, removeItem } from "../redux/CartSlice";
 
-function CartItem({ items }) {
-
-  const totalAmount = items.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+function CartItem({ item }) {
+  const dispatch = useDispatch();
 
   return (
     <div>
-      <h1>Cart</h1>
+      <h3>{item.name}</h3>
+      <p>Price: ${item.price}</p>
 
-      {items.map((item, index) => (
-        <div key={index}>
-          <h3>{item.name}</h3>
-          <p>Price: ${item.price}</p>
-          <p>Quantity: {item.quantity}</p>
+      <button onClick={() => dispatch(decrementQuantity(item.id))}>-</button>
+      <span>{item.quantity}</span>
+      <button onClick={() => dispatch(incrementQuantity(item.id))}>+</button>
 
-          <button>+</button>
-          <button>-</button>
+      <p>Total: ${item.price * item.quantity}</p>
 
-          <p>Total: ${item.price * item.quantity}</p>
-          <button>Remove</button>
-        </div>
-      ))}
-
-      <h2>Total Cart Amount: ${totalAmount}</h2>
+      <button onClick={() => dispatch(removeItem(item.id))}>
+        Remove
+      </button>
     </div>
   );
 }
