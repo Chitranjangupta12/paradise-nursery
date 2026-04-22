@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ProductList from "./components/ProductList";
+import Cart from "./components/Cart";   // ✅ added
 
 function App() {
   const [showProductList, setShowProductList] = useState(false);
@@ -14,7 +15,10 @@ function App() {
           </button>
         </>
       ) : (
-        <ProductList />
+        <>
+          <ProductList />
+          <Cart />   {/* ✅ VERY IMPORTANT */}
+        </>
       )}
     </div>
   );
